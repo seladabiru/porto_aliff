@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ahmad Aliffansyah — Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Floating navbar (segmented control): stays on screen while scrolling -->
+  <nav class="navbar" aria-label="Main">
+    <a class="navbar__option is-selected" href="#home" aria-current="page">Home</a>
+    <a class="navbar__option" href="#about">About Me</a>
+    <a class="navbar__option" href="#projects">Projects</a>
+    <a class="navbar__option" href="#contact">Contact</a>
+  </nav>
+
+  <main>
+
+    <!-- ============ 1. HOME ============ -->
+    <section class="hero" id="home" aria-label="Home">
+
+      <h1 class="title">( portfolio )</h1>
+
+      <figure class="photo">
+        <img src="assets/gua.png" alt="Portrait of Ahmad Aliffansyah holding a walkie-talkie">
+      </figure>
+
+      <!-- Name + text selection (above the photo so it can be hovered) -->
+      <div class="tag">
+        <p class="name">ahmad aliffansyah</p>
+        <span class="selection" aria-hidden="true">
+          <span class="selection__handle selection__handle--trailing">
+            <span class="selection__stick"></span>
+            <span class="selection__pop"><img src="assets/selection-handle.svg" alt=""></span>
+          </span>
+          <span class="selection__handle selection__handle--leading">
+            <span class="selection__stick"></span>
+            <span class="selection__pop"><img src="assets/selection-handle.svg" alt=""></span>
+          </span>
+        </span>
+      </div>
+
+      <!-- Dock -->
+      <div class="dock">
+        <div class="dock__bar">
+          <div class="glass glass--dock" aria-hidden="true"></div>
+
+          <ul class="dock__apps">
+            <li class="app"><img src="assets/dock-messages.png" alt="Messages"></li>
+            <li class="app"><img src="assets/dock-safari.png" alt="Safari"></li>
+            <li class="app"><img src="assets/dock-music.png" alt="Music"></li>
+            <li class="app"><img src="assets/dock-mail.png" alt="Mail"></li>
+            <li class="app"><img src="assets/dock-calendar.png" alt="Calendar"></li>
+            <li class="app"><img src="assets/dock-photos.png" alt="Photos"></li>
+            <li class="app"><img src="assets/dock-notes.png" alt="Notes"></li>
+          </ul>
+
+          <span class="dock__separator" aria-hidden="true"></span>
+
+          <div class="folder" role="img" aria-label="App library">
+            <span class="folder__stack" aria-hidden="true">
+              <span class="glass glass--tile folder__tile folder__tile--1"></span>
+              <span class="glass glass--tile folder__tile folder__tile--2"></span>
+              <span class="glass glass--tile folder__tile folder__tile--3"></span>
+            </span>
+            <span class="folder__row">
+              <img class="mini" src="assets/dock-freeform.png" alt="">
+              <img class="mini" src="assets/dock-translate.png" alt="">
+            </span>
+            <span class="folder__row">
+              <img class="mini" src="assets/dock-itunes-store.png" alt="">
+              <img class="mini" src="assets/dock-find-my.png" alt="">
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Status bar -->
+      <div class="status status--trailing">
+        <img class="status__wifi" src="assets/status-wifi.svg" alt="">
+        <span>100%</span>
+        <img class="status__battery" src="assets/status-battery.svg" alt="">
+      </div>
+
+      <button class="chat" type="button">
+        <img src="assets/chat-button.png" alt="Hi, do we know each other?">
+      </button>
+
+      <div class="status status--leading">
+        <span class="status__time"><span>9:41</span><span>AM</span></span>
+        <span>Wed Apr 1</span>
+      </div>
+
+    </section>
+
+    <!-- ============ 2. ABOUT ME ============ -->
+    <section class="about" id="about" aria-labelledby="about-title">
+
+      <figure class="about__photo">
+        <img src="assets/gua-gamis.png" alt="Portrait of Ahmad Aliffansyah in a navy blue gamis">
+      </figure>
+
+      <h2 class="about__title" id="about-title">about me</h2>
+      <span class="selection about__selection" aria-hidden="true">
+        <span class="selection__handle selection__handle--trailing">
+          <span class="selection__stick"></span>
+          <span class="selection__pop"><img src="assets/selection-handle.svg" alt=""></span>
+        </span>
+        <span class="selection__handle selection__handle--leading">
+          <span class="selection__stick"></span>
+          <span class="selection__pop"><img src="assets/selection-handle.svg" alt=""></span>
+        </span>
+      </span>
+
+      <p class="about__bio">A student at SMKN 20 Jakarta, majoring in Software Engineering, with a strong interest in UI/UX, graphic design, and visual media. Experienced in organizational activities and capable of working effectively in a team. Disciplined, responsible, confident, and eager to learn.</p>
+
+      <h3 class="about__label about__label--education">education</h3>
+
+      <ul class="education">
+        <li class="education__item education__item--1">
+          <img class="education__folder" src="assets/folder.svg" alt="">
+          <div class="education__text">
+            <p class="education__school">SMPN 212 Jakarta</p>
+            <p class="education__years">2021 - 2024</p>
+          </div>
+        </li>
+        <li class="education__item education__item--2">
+          <img class="education__folder" src="assets/folder.svg" alt="">
+          <div class="education__text">
+            <p class="education__school">SMKN 20 Jakarta</p>
+            <p class="education__years">2024 - Now</p>
+          </div>
+        </li>
+      </ul>
+
+      <h3 class="about__label about__label--language">language</h3>
+
+      <ul class="languages">
+        <li class="pill pill--id"><img src="assets/language-id.png" alt="Bahasa Indonesia - Fluent"></li>
+        <li class="pill pill--en"><img src="assets/language-en.png" alt="English - Advanced"></li>
+        <li class="pill pill--jp"><img src="assets/language-jp.png" alt="Japanese - Basic"></li>
+      </ul>
+
+    </section>
+
+    <!-- ============ 3. PROJECTS ============ -->
+    <section class="projects" id="projects" aria-labelledby="projects-title">
+
+      <h2 class="projects__title" id="projects-title">projects</h2>
+
+      <ul class="project-list">
+
+        <!-- ── Project 1: e-Library ──
+             Layout: info left (narrow) | browser mockup right (wide) -->
+        <li class="project-card" data-project="elibrary">
+          <div class="project-card__info">
+            <h3 class="project-card__name">
+              <img src="assets/logo-e-library.svg" alt="e-Library" class="project-card__logo">
+            </h3>
+            <p class="project-card__about"><strong>e-Library</strong> is a library management system designed to simplify book management, borrowing and returning processes, and library administration through an intuitive interface.</p>
+          </div>
+          <button class="project-card__trigger" aria-haspopup="dialog" aria-label="View e-Library project screenshots">
+            <figure class="project-card__cover project-card__cover--browser">
+              <img src="assets/project-splash.png" alt="e-Library landing page">
+              <span class="project-card__overlay" aria-hidden="true">
+                <span class="project-card__overlay-label">view project</span>
+              </span>
+            </figure>
+          </button>
+        </li>
+
+        <!-- ── Project 2: 20/7 ──
+             Layout: full-bleed square poster left | logo + text right -->
+        <li class="project-card project-card--207" data-project="207">
+          <button class="project-card__trigger" aria-haspopup="dialog" aria-label="View 20/7 project screenshots">
+            <figure class="project-card__cover project-card__cover--square">
+              <img src="assets/project-207-cover.png" alt="20/7 — OSIS/MPK SMKN 20 Jakarta event poster">
+              <span class="project-card__overlay" aria-hidden="true">
+                <span class="project-card__overlay-label">view project</span>
+              </span>
+            </figure>
+          </button>
+          <div class="project-card__info project-card__info--right">
+            <h3 class="project-card__name">
+              <img src="assets/logo-207.png" alt="20/7" class="project-card__logo project-card__logo--207">
+            </h3>
+            <p class="project-card__about"><strong>20/7</strong> is a media platform that provides information on daily activities at SMKN 20 Jakarta.</p>
+          </div>
+        </li>
+
+        <!-- ── Project 3: ibis Styles ──
+             Layout: logo + text left | hotel room photo right -->
+        <li class="project-card" data-project="ibis">
+          <div class="project-card__info">
+            <h3 class="project-card__name">
+              <img src="assets/ibis-styles-logo.png" alt="ibis Styles Hotels" class="project-card__logo project-card__logo--ibis">
+            </h3>
+            <p class="project-card__about"><strong>ibis Styles Hotels</strong> is an international <a href="https://id.wikipedia.org/wiki/Hotel#ekonomi" target="_blank" rel="noopener noreferrer">budget hotel</a> chain owned by <a href="https://id.wikipedia.org/wiki/Accor" target="_blank" rel="noopener noreferrer">Accor</a>. Each ibis Styles hotel has a unique design and creates a resort or holiday atmosphere.</p>
+          </div>
+          <button class="project-card__trigger" aria-haspopup="dialog" aria-label="View ibis Styles project screenshots">
+            <figure class="project-card__cover project-card__cover--photo">
+              <img src="assets/ibis-styles-room.jpg" alt="ibis Styles hotel room with modern furnishings">
+              <span class="project-card__overlay" aria-hidden="true">
+                <span class="project-card__overlay-label">view project</span>
+              </span>
+            </figure>
+          </button>
+        </li>
+
+      </ul>
+
+    </section>
+
+    <!-- ============ 4. CONTACT ============ -->
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+
+      <h2 class="contact__title" id="contact-title">lets work together!</h2>
+
+      <!-- Everything marked data-draggable can be dragged around the section -->
+      <figure class="widget widget--photo" data-draggable>
+        <img src="assets/contact-photo.png" draggable="false" alt="Photos notification hahay deh with a picture of Aliff in a black suit standing in a school courtyard">
+      </figure>
+
+      <div class="widget widget--bubble" data-draggable>
+        <img src="assets/contact-button.png" draggable="false" alt="how about now?">
+      </div>
+
+      <aside class="widget widget--contact" data-draggable aria-labelledby="contact-card-title">
+        <p class="contact-card__title" id="contact-card-title">Call me later!</p>
+        <ul class="contact-card__links">
+          <li><a class="link" href="mailto:aliffansyahahmad@gmail.com">aliffansyahahmad@gmail.com</a></li>
+          <li><a class="link" href="https://instagram.com/f4nsyah" target="_blank" rel="noopener noreferrer">instagram.com/f4nsyah</a></li>
+          <li><a class="link" href="https://wa.me/6281514205591" target="_blank" rel="noopener noreferrer">wa.me/6281514205591</a></li>
+        </ul>
+      </aside>
+
+    </section>
+
+  </main>
+
+  <!-- ============ PROJECT MODAL ============ -->
+  <div class="modal-backdrop" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal-window">
+      <!-- macOS-style title bar -->
+      <header class="modal-titlebar">
+        <div class="modal-titlebar__dots" aria-hidden="true">
+          <button class="modal-dot modal-dot--close" id="modalClose" aria-label="Close preview"></button>
+          <span class="modal-dot modal-dot--min"></span>
+          <span class="modal-dot modal-dot--max"></span>
+        </div>
+        <span class="modal-titlebar__title" id="modalTitle">Project Preview</span>
+      </header>
+      <!-- Scrollable content -->
+      <div class="modal-body" id="modalBody">
+        <!-- screenshots injected by JS -->
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

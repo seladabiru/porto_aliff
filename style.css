@@ -1,0 +1,1124 @@
+/* Tokens (from Figma variables) */
+:root {
+  --accent-blue: #0088ff;
+  --label-primary: #000000;
+  --segmented-selected-fill: #ffffff;
+  --fill-tertiary: rgba(118, 118, 128, 0.12);
+  --fill-vibrant-secondary: #e0e0e0;
+  --dock-radius: 38px;
+  --glass-frost: 6px;
+  --glass-shadow:
+    1.25px 0 0 -0.75px #d0d0d0,
+    -1.25px 0 0 -0.75px #d0d0d0,
+    0 0 0 0.5px #cccccc,
+    0 8px 15px rgba(0, 0, 0, 0.02);
+  --font: Helvetica, "Helvetica Neue", Arial, "Liberation Sans", sans-serif;
+  --hover-scale: 1.05;
+  --hover-ease: 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #fff;
+  font-family: var(--font);
+  color: var(--label-primary);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Sections: each is a 1440 x 1024 artboard, stacked top to bottom */
+.hero,
+.about,
+.projects,
+.contact {
+  position: relative;
+  width: 1440px;
+  height: 1024px;
+  margin: 0 auto;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* ---------- Name + selection ---------- */
+.tag {
+  position: absolute;
+  left: 807px;
+  top: 446px;
+  width: 294px;
+  height: 29px;
+  transition: transform var(--hover-ease);
+}
+.tag:hover {
+  transform: scale(var(--hover-scale));
+}
+
+.name {
+  position: absolute;
+  left: 7px;
+  top: 0;
+  margin: 0;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 5.04px;
+  white-space: nowrap;
+}
+
+/* Text Selection component: translucent highlight + two lollipop handles.
+   Size/position are set per use (.tag .selection, .about__selection). */
+.selection {
+  position: absolute;
+}
+.selection::before {
+  content: "";
+  position: absolute;
+  inset: -2.41px 0;
+  border-radius: 0.802px;
+  background: var(--accent-blue);
+  mix-blend-mode: multiply;
+  opacity: 0.25;
+}
+.tag .selection {
+  left: 0;
+  top: 2px;
+  width: 294px;
+  height: 23px;
+}
+
+.selection__handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 12.838px;
+}
+.selection__handle--trailing { right: -5.62px; }
+.selection__handle--leading  { left: -5.62px; }
+
+.selection__stick {
+  position: absolute;
+  left: 50%;
+  width: 1.605px;
+  transform: translateX(-50%);
+  border-radius: 1.605px;
+  background: var(--accent-blue);
+}
+.selection__handle--trailing .selection__stick { top: -2.41px; bottom: -5.62px; }
+.selection__handle--leading  .selection__stick { top: -5.62px; bottom: -2.41px; }
+
+.selection__pop {
+  position: absolute;
+  left: 50%;
+  width: 12.838px;
+  height: 12.838px;
+  transform: translateX(-50%);
+}
+.selection__handle--trailing .selection__pop { bottom: -12.84px; }
+.selection__handle--leading  .selection__pop { top: -12.84px; }
+
+.selection__pop img {
+  position: absolute;
+  display: block;
+  max-width: none;
+  left: -16.05px;
+  top: -13.64px;
+}
+
+/* ---------- Title ---------- */
+.title {
+  position: absolute;
+  left: 125px;
+  top: 127px;
+  margin: 0;
+  font-size: 128px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 51.2px;
+  white-space: nowrap;
+}
+
+/* ---------- Photo ---------- */
+.photo {
+  position: absolute;
+  left: 346px;
+  top: 281px;
+  width: 748px;
+  height: 755px;
+  margin: 0;
+  transform-origin: 50% 100%;
+  transition: transform var(--hover-ease);
+}
+.photo:hover {
+  transform: scale(1.03);
+}
+.photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom;
+}
+
+/* ---------- Liquid glass (shared) ---------- */
+.glass {
+  position: absolute;
+  border-radius: var(--glass-radius, var(--dock-radius));
+}
+.glass::before,
+.glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+.glass::before {
+  background: var(--glass-fill);
+  mix-blend-mode: luminosity;
+  box-shadow: var(--glass-shadow);
+}
+.glass::after {
+  -webkit-backdrop-filter: blur(var(--glass-frost));
+  backdrop-filter: blur(var(--glass-frost));
+}
+.glass--dock {
+  inset: 0;
+  --glass-fill: rgba(153, 153, 153, 0.33);
+}
+.glass--tile {
+  --glass-radius: 17px;
+  --glass-fill: rgba(248, 248, 248, 0.08);
+}
+
+/* ---------- Dock ---------- */
+.dock {
+  position: absolute;
+  left: 350px;
+  top: 852px;
+  width: 740px;
+  height: 153px;
+  padding: 18px 0 28px;
+}
+
+.dock__bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 19.5px;
+  padding: 19.5px;
+}
+
+.dock__apps {
+  display: contents;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.app {
+  position: relative;
+  flex: none;
+  width: 68px;
+  height: 68px;
+}
+.app img {
+  display: block;
+  width: 68px;
+  height: 68px;
+  object-fit: cover;
+}
+
+.dock__separator {
+  position: relative;
+  flex: none;
+  width: 1px;
+  height: 62px;
+  border-radius: 100px;
+  background: var(--fill-vibrant-secondary);
+  mix-blend-mode: plus-lighter;
+}
+
+.folder {
+  position: relative;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4.5px;
+  width: 68px;
+  height: 68px;
+  border-radius: 12px;
+}
+
+.folder__stack {
+  position: absolute;
+  left: -8px;
+  top: 0;
+  width: 68px;
+  height: 61px;
+}
+.folder__tile { display: block; }
+.folder__tile--1 { left: 0;   top: 8px; width: 52px; height: 52px; }
+.folder__tile--2 { left: 4px; top: 4px; width: 60px; height: 60px; }
+.folder__tile--3 { left: 8px; top: 0;   width: 68px; height: 68px; }
+
+.folder__row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4.5px;
+  width: 100%;
+}
+.mini {
+  display: block;
+  width: 23px;
+  height: 23px;
+  border-radius: 5.25px;
+  object-fit: cover;
+}
+
+/* ---------- Navbar (segmented control) ---------- */
+/* One floating navbar for the whole page. At the top it sits exactly where the
+   Figma frames place it (55px from the top, centered); once the page scrolls
+   (.is-scrolled, set by script.js) it gets a frosted-glass look so it stays
+   readable over any content. */
+.navbar {
+  --nav-top: 55px;
+  position: fixed;
+  z-index: 100;
+  top: var(--nav-top);
+  left: 50%;
+  width: 407px;
+  height: 55px;
+  margin-left: -203px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 2.2px;
+  overflow: clip;
+  border-radius: 100px;
+  background:
+    linear-gradient(var(--fill-tertiary), var(--fill-tertiary)),
+    rgba(255, 255, 255, 0);
+  transition:
+    background-color var(--hover-ease),
+    box-shadow var(--hover-ease),
+    -webkit-backdrop-filter var(--hover-ease),
+    backdrop-filter var(--hover-ease);
+}
+.navbar.is-scrolled {
+  background:
+    linear-gradient(var(--fill-tertiary), var(--fill-tertiary)),
+    rgba(255, 255, 255, 0.62);
+  -webkit-backdrop-filter: blur(20px) saturate(1.6);
+  backdrop-filter: blur(20px) saturate(1.6);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+}
+
+.navbar__option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 97.35px;
+  height: 50.6px;
+  padding: 3.3px 6.6px;
+  border-radius: 1100px;
+  color: var(--label-primary);
+  font-size: 14.67px;
+  font-weight: 500;
+  line-height: 19.8px;
+  letter-spacing: -0.08px;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--hover-ease);
+}
+.navbar__option:not(.is-selected):hover {
+  background: rgba(255, 255, 255, 0.65);
+}
+.navbar__option.is-selected {
+  font-weight: 600;
+  background: var(--segmented-selected-fill);
+  filter: drop-shadow(0 2.2px 11px rgba(0, 0, 0, 0.06));
+}
+.navbar__option:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: -2px;
+}
+
+/* ---------- Status bar ---------- */
+.status {
+  position: absolute;
+  top: 14px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  white-space: nowrap;
+}
+.status--leading  { left: 19px;   width: 132px; gap: 8px; }
+.status--trailing { left: 1331px; width: 89.843px; gap: 5px; }
+.status__time { display: flex; gap: 2px; }
+.status__wifi    { display: block; width: 13.51px;  height: 10px; }
+.status__battery { display: block; width: 27.333px; height: 13px; }
+
+/* ---------- Chat bubble button ---------- */
+/* The glass pill and its label are baked into assets/chat-button.png
+   (exported from Figma at 4x, with a 0.5px bleed on every side). */
+.chat {
+  position: absolute;
+  left: 375.5px;
+  top: 630.5px;
+  width: 241px;
+  height: 39px;
+  padding: 0;
+  border: 0;
+  border-radius: 1000px;
+  background: none;
+  cursor: pointer;
+  transition: transform var(--hover-ease);
+}
+.chat img {
+  display: block;
+  width: 241px;
+  height: 39px;
+  pointer-events: none;
+}
+.chat:hover {
+  transform: scale(var(--hover-scale));
+}
+.chat:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 3px;
+}
+
+/* ---------- About me ---------- */
+.about__photo {
+  position: absolute;
+  left: 98px;
+  top: -39px;
+  width: 446px;
+  height: 1240px;
+  margin: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.about__photo img {
+  position: absolute;
+  left: -51.79%;
+  top: 0;
+  width: 208.52%;
+  height: 100%;
+  max-width: none;
+}
+
+.about__title {
+  position: absolute;
+  left: 662px;
+  top: 209px;
+  margin: 0;
+  font-size: 64px;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 13.44px;
+  white-space: nowrap;
+}
+.about__selection {
+  left: 653px;
+  top: 221px;
+  width: 378px;
+  height: 49px;
+}
+
+.about__bio {
+  position: absolute;
+  left: 653px;
+  top: 316px;
+  width: 709px;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: normal;
+  letter-spacing: 1.2px;
+}
+
+.about__label {
+  position: absolute;
+  left: 653px;
+  margin: 0;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 6.72px;
+  white-space: nowrap;
+}
+.about__label--education { top: 481px; }
+.about__label--language  { top: 834px; }
+
+.education {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.education__item {
+  position: absolute;
+  left: 660px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.education__item--1 { top: 559px; }
+.education__item--2 { top: 691px; }
+
+/* folder.svg has root size 114 x 88; the drawn folder inside is 113.41 x 87.059
+   (the Figma box), so keep the root size and trim the margins to match. */
+.education__folder {
+  display: block;
+  flex: none;
+  width: 114px;
+  height: 88px;
+  margin: 0 -0.59px -0.941px 0;
+}
+.education__text {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  width: 250px;
+  font-size: 24px;
+  letter-spacing: 1.2px;
+}
+.education__school,
+.education__years {
+  margin: 0;
+  line-height: normal;
+}
+.education__school {
+  display: list-item;
+  list-style: disc outside;
+  align-self: stretch;
+  margin-left: 36px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.education__years {
+  width: 179px;
+  font-weight: 300;
+}
+
+.languages {
+  position: absolute;
+  left: 660px;
+  top: 905px;
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  height: 43px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/* Each pill PNG is exported with a 0.5px bleed on every side */
+.pill {
+  position: relative;
+  flex: none;
+  height: 43px;
+}
+.pill--id { width: 229px; height: 42.558px; }
+.pill--en { width: 185px; }
+.pill--jp { width: 163px; }
+/* PNGs are 4x exports: natural size = file size / 4 */
+.pill img {
+  position: absolute;
+  left: -0.5px;
+  top: -0.5px;
+  display: block;
+  max-width: none;
+  height: 44.25px;
+}
+.pill--id img { width: 230.25px; top: -0.72px; }
+.pill--en img { width: 186.25px; }
+.pill--jp img { width: 164.25px; }
+
+/* ---------- Projects ---------- */
+/* Positions and sizes are taken from the Projects frame in Figma (1440 wide).
+   --u is 1 Figma px: 1px at >=1440 viewport, scales down proportionally below. */
+.projects {
+  --u: min(0.0694444vw, 1px);
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  height: auto;
+  margin: 0 auto;
+  overflow: visible;
+  padding: calc(176.5 * var(--u)) 0 calc(355 * var(--u));
+  background: #fff;
+}
+
+/* Title: SF Pro Medium 207.104px, tracking 43.49px (0.21em), centred */
+.projects__title {
+  margin: 0 0 calc(138 * var(--u));
+  padding-left: 1px;
+  font-size: calc(207.104 * var(--u));
+  font-weight: 500;
+  line-height: 1.19;
+  letter-spacing: 0.21em;
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* ── Project list: vertical stack, 156px between rows ── */
+.project-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: calc(156 * var(--u));
+}
+
+/* ────────────────────────────────────────────
+   CARD ROW: info column (394) + cover, 37px gap, centred.
+   The small left offsets are the frame's own x-positions.
+   ──────────────────────────────────────────── */
+.project-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(37 * var(--u));
+}
+.project-card[data-project="207"]  { padding-right: calc(18 * var(--u)); }
+.project-card[data-project="ibis"] { padding-left: calc(15.88 * var(--u)); }
+
+/* Info column */
+.project-card__info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 0 0 auto;
+  width: calc(394 * var(--u));
+}
+.project-card__name {
+  margin: 0;
+  padding: calc(10 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.project-card__logo {
+  display: block;
+  flex: 0 0 auto;
+  width: calc(299 * var(--u));
+  height: auto;
+}
+/* e-Library: logo line box is 107px tall (+10px padding top/bottom) */
+.project-card[data-project="elibrary"] .project-card__name {
+  min-height: calc(127 * var(--u));
+}
+.project-card__logo--207 {
+  width: calc(338.366 * var(--u));
+}
+/* ibis: 306 x 291 slot holding a 319px square (the PNG has built-in padding) */
+.project-card__name:has(.project-card__logo--ibis) {
+  width: calc(306 * var(--u));
+  height: calc(291 * var(--u));
+  padding: 0;
+}
+.project-card__logo--ibis {
+  width: calc(319.021 * var(--u));
+  height: calc(319.021 * var(--u));
+}
+
+/* Body copy: SF Pro Light 32px, tracking 0.64px, 374px wide inside 10px padding */
+.project-card__about {
+  box-sizing: content-box;
+  width: calc(374 * var(--u));
+  margin: 0;
+  padding: calc(10 * var(--u));
+  font-size: calc(32 * var(--u));
+  font-weight: 300;
+  line-height: normal;
+  letter-spacing: 0.02em;
+  color: #000;
+}
+.project-card__about strong {
+  font-weight: 500;
+}
+.project-card__about u,
+.project-card__about a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  text-underline-position: from-font;
+  cursor: pointer;
+}
+
+/* ────────────────────────────────────────────
+   IMAGE TRIGGER (shared)
+   ──────────────────────────────────────────── */
+.project-card__trigger {
+  flex: 0 0 auto;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: block;
+}
+.project-card__trigger:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 4px;
+  border-radius: 26px;
+}
+
+/* ── Cover image wrappers ── */
+.project-card__cover {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  line-height: 0;
+}
+/* e-Library + ibis: 826.875 x 588, r26.068, big soft shadow */
+.project-card__cover--browser,
+.project-card__cover--photo {
+  width: calc(826.875 * var(--u));
+  height: calc(588 * var(--u));
+  border-radius: calc(26.068 * var(--u));
+  box-shadow: 0 calc(43.446 * var(--u)) calc(202.748 * var(--u)) rgba(0, 0, 0, 0.3);
+}
+/* 20/7: 789 x 986 poster, r24 */
+.project-card__cover--square {
+  width: calc(789 * var(--u));
+  height: calc(986 * var(--u));
+  border-radius: calc(24 * var(--u));
+  box-shadow: 0 calc(20 * var(--u)) calc(130 * var(--u)) rgba(0, 0, 0, 0.3);
+}
+/* ibis photo is cropped from the right in the design */
+.project-card__cover--photo img {
+  object-position: left center;
+}
+
+.project-card__cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.project-card__trigger:hover .project-card__cover img,
+.project-card__trigger:focus-visible .project-card__cover img {
+  transform: scale(1.03);
+}
+
+/* Hover overlay pill */
+.project-card__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.38);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.project-card__trigger:hover .project-card__overlay,
+.project-card__trigger:focus-visible .project-card__overlay {
+  opacity: 1;
+}
+.project-card__overlay-label {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 11px 26px;
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  border-radius: 100px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* ---- Modal / popup window ---- */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.55);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.modal-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-backdrop[hidden] {
+  display: none;
+}
+
+.modal-window {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  max-height: 88vh;
+  background: #f2f2f2;
+  border-radius: 14px;
+  box-shadow:
+    0 0 0 0.5px rgba(0, 0, 0, 0.18),
+    0 40px 100px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: scale(0.94) translateY(12px);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.modal-backdrop.is-open .modal-window {
+  transform: scale(1) translateY(0);
+}
+
+/* macOS title bar */
+.modal-titlebar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 16px;
+  background: #ececec;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  user-select: none;
+  -webkit-user-select: none;
+  gap: 12px;
+}
+.modal-titlebar__dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.modal-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  cursor: default;
+  flex: none;
+  position: relative;
+  transition: filter 0.15s;
+}
+.modal-dot--close {
+  background: #ff5f57;
+  cursor: pointer;
+}
+.modal-dot--min   { background: #febc2e; }
+.modal-dot--max   { background: #28c840; }
+.modal-dot--close:hover { filter: brightness(0.85); }
+.modal-dot--close:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+.modal-titlebar__title {
+  flex: 1;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-right: 54px; /* balance the dots on the left */
+}
+
+/* Scrollable body — single column, cards stack vertically and scroll */
+.modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+.modal-body::-webkit-scrollbar { width: 8px; }
+.modal-body::-webkit-scrollbar-track { background: transparent; }
+.modal-body::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 4px;
+}
+
+/* Each shot fills the full modal width — clean, readable, scrollable */
+.modal-shot {
+  flex: none;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  /* Preserve the screenshot's natural aspect ratio */
+  line-height: 0;
+}
+.modal-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tag, .photo, .chat, .navbar__option, .widget, .link { transition: none; }
+  .contact__title.is-hopping .char { animation: none; }
+  html { scroll-behavior: auto; }
+  .modal-backdrop, .modal-window { transition: none; }
+  .project-card__cover img { transition: none; }
+  .project-card__overlay { transition: none; }
+}
+
+/* ============================================================
+   RESPONSIVE — sections that were fixed to 1440px wide
+   ============================================================ */
+
+/* Base: allow hero / about / contact to shrink */
+@media (max-width: 1440px) {
+  .hero,
+  .about,
+  .contact {
+    width: 100%;
+    max-width: 1440px;
+  }
+}
+
+/* Tablet portrait */
+@media (max-width: 800px) {
+  /* Navbar shrink */
+  .navbar {
+    width: auto;
+    padding: 2.2px 8px;
+    left: 50%;
+    margin-left: 0;
+    transform: translateX(-50%);
+  }
+  .navbar__option {
+    width: auto;
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  /* Hero / About / Contact: allow scroll & scale */
+  .hero,
+  .about,
+  .contact {
+    height: auto;
+    min-height: 600px;
+    overflow: visible;
+  }
+
+  /* Projects — stack vertically; cover on top for every card */
+  .projects {
+    padding: 40px 0 80px;
+  }
+  .projects__title {
+    font-size: 14.38vw;
+    margin-bottom: 48px;
+  }
+  .project-list {
+    gap: 72px;
+  }
+  .project-card,
+  .project-card[data-project="207"],
+  .project-card[data-project="ibis"] {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    padding: 0 24px;
+  }
+  .project-card__info {
+    width: 100%;
+  }
+  .project-card__name,
+  .project-card__name:has(.project-card__logo--ibis) {
+    width: auto;
+    height: auto;
+    min-height: 0;
+    padding: 10px;
+  }
+  .project-card__logo { width: 200px; }
+  .project-card__logo--207 { width: 220px; }
+  .project-card__logo--ibis { width: 200px; height: 200px; margin: -30px 0; }
+  .project-card__about {
+    width: auto;
+    font-size: 20px;
+  }
+  .project-card__trigger { width: 100%; }
+  .project-card__cover--browser,
+  .project-card__cover--photo,
+  .project-card__cover--square {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+  }
+  .project-card__cover--browser,
+  .project-card__cover--photo { aspect-ratio: 826.875 / 588; }
+  .project-card__cover--square { aspect-ratio: 789 / 986; }
+
+  /* Modal */
+  .modal-body {
+    padding: 16px;
+  }
+  .modal-window {
+    max-height: 90vh;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .project-card,
+  .project-card[data-project="207"],
+  .project-card[data-project="ibis"] {
+    padding: 0 16px;
+  }
+  .project-card__about { font-size: 17px; }
+
+  /* Modal titlebar */
+  .modal-titlebar__title {
+    font-size: 13px;
+    margin-right: 38px;
+  }
+}
+
+/* ---------- Contact ---------- */
+/* Positions and sizes are taken from the Contact frame in Figma (1440 x 1024). */
+.contact__title {
+  position: absolute;
+  left: 207px;
+  top: 440px;
+  margin: 0;
+  font-size: 128px;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -1.3px;
+  white-space: nowrap;
+  cursor: default;
+}
+.contact__title .word {
+  display: inline-block;
+  white-space: nowrap;
+}
+.contact__title .char {
+  display: inline-block;
+}
+
+/* Each letter hops once, left to right, when the pointer enters the title */
+.contact__title.is-hopping .char {
+  animation: hop 0.6s cubic-bezier(0.3, 0.7, 0.4, 1) both;
+  animation-delay: calc(var(--i) * 35ms);
+}
+@keyframes hop {
+  0%   { transform: translateY(0); }
+  30%  { transform: translateY(-16px) rotate(-5deg); }
+  55%  { transform: translateY(0) scale(1.06, 0.9); }
+  75%  { transform: translateY(-5px); }
+  100% { transform: none; }
+}
+
+/* Draggable widgets: --x / --y are written by script.js while dragging */
+.widget {
+  position: absolute;
+  margin: 0;
+  translate: var(--x, 0px) var(--y, 0px);
+  scale: var(--s, 1);
+  transition: scale var(--hover-ease);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.widget--photo img,
+.widget--bubble img {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+.widget.is-dragging {
+  --s: 1.04;
+  cursor: grabbing;
+}
+
+/* photo-aliff.png has a blank margin around the card, so it is sized and
+   cropped to the visible card (header + photo) */
+.widget--photo {
+  left: 964.6px;
+  top: 34.5px;
+  width: 402.7px;
+  height: 372px;
+  overflow: hidden;
+}
+.widget--bubble {
+  left: 1087px;
+  top: 458px;
+  width: 158px;
+}
+
+.widget--contact {
+  left: 237px;
+  top: 667px;
+  width: 313px;
+  padding: 23px 15px 15px;
+  border-radius: 36px;
+  background: #f8f8f8;
+  box-shadow: var(--glass-shadow), 0 25px 60px rgba(0, 0, 0, 0.12);
+}
+.widget--contact.is-dragging {
+  box-shadow: var(--glass-shadow), 0 36px 80px rgba(0, 0, 0, 0.18);
+}
+
+.contact-card__title {
+  margin: 0 0 26px 7px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+}
+.contact-card__links {
+  display: grid;
+  gap: 9.5px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.link {
+  display: block;
+  height: 49px;
+  border-radius: 100px;
+  background: var(--fill-tertiary);
+  color: var(--label-primary);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 49px;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--hover-ease), scale var(--hover-ease);
+}
+.link:hover {
+  background: rgba(118, 118, 128, 0.2);
+  scale: 1.02;
+}
+.link:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
