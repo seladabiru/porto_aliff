@@ -43,6 +43,10 @@ html {
   background: #fff;
 }
 
+.about {
+  height: 1280px;
+}
+
 /* ---------- Name + selection ---------- */
 .tag {
   position: absolute;
@@ -462,7 +466,7 @@ html {
   white-space: nowrap;
 }
 .about__label--education { top: 481px; }
-.about__label--language  { top: 834px; }
+.about__label--language  { top: 977px; }
 
 .education {
   margin: 0;
@@ -476,8 +480,9 @@ html {
   align-items: center;
   gap: 10px;
 }
-.education__item--1 { top: 559px; }
-.education__item--2 { top: 691px; }
+.education__item--0 { top: 559px; }
+.education__item--1 { top: 691px; }
+.education__item--2 { top: 823px; }
 
 /* folder.svg has root size 114 x 88; the drawn folder inside is 113.41 x 87.059
    (the Figma box), so keep the root size and trim the margins to match. */
@@ -487,6 +492,23 @@ html {
   width: 114px;
   height: 88px;
   margin: 0 -0.59px -0.941px 0;
+}
+.education__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--hover-ease), opacity var(--hover-ease);
+}
+.education__link:hover {
+  transform: scale(1.08);
+  opacity: 0.8;
+}
+.education__link:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+  border-radius: 8px;
 }
 .education__text {
   flex: none;
@@ -519,7 +541,7 @@ html {
 .languages {
   position: absolute;
   left: 660px;
-  top: 905px;
+  top: 1040px;
   display: flex;
   align-items: center;
   gap: 19px;
